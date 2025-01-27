@@ -40,6 +40,9 @@ int initX11() {
 	}
 	libX11 = dlopen("libX11.so", RTLD_LAZY);
 	if (!libX11) {
+        libX11 = dlopen("libX11.so.6", RTLD_LAZY);
+	}
+	if (!libX11) {
 		return 0;
 	}
 	P_XOpenDisplay = (Display* (*)(int)) dlsym(libX11, "XOpenDisplay");
